@@ -1,0 +1,224 @@
+import tkinter as tk
+from tkinter import ttk
+from tkinter import colorchooser
+from collections import OrderedDict
+import os
+
+class AdvancedTab(ttk.Frame):
+
+
+    def __init__(self, parent, newsletter):
+        ttk.Frame.__init__(self, parent)
+        self.parent = parent
+        self.parent_folderpath = os.getcwd()
+        
+        self.newsletter = newsletter
+        self.initialize()
+        
+    def initialize(self):
+        
+        #Entries
+        self.entry_banner = ttk.Entry(self, textvariable = tk.StringVar())
+        self.entry_new_section = ttk.Entry(self, textvariable = tk.StringVar())
+        self.entry_icon = ttk.Entry(self, textvariable = tk.StringVar())
+        self.entry_icon_name = ttk.Entry(self, textvariable = tk.StringVar())
+        
+        #Listboxes
+        self.listbox_colors = tk.Listbox(self, selectmode = tk.SINGLE, exportselection = 0)
+        self.listbox_sections = tk.Listbox(self, selectmode = tk.SINGLE, exportselection = 0)
+        self.listbox_icons = tk.Listbox(self, selectmode = tk.SINGLE, exportselection = 0)
+        self.boxes = [self.listbox_colors, self.listbox_sections, self.listbox_icons]
+        for box in self.boxes:
+            box.bind("<<ListboxSelect>>", self.update_labels)
+            box.bind("<Up>", self.select_previous)
+            box.bind("<Down>", self.select_next)
+        
+        #Buttons
+        self.button_banner = ttk.Button(self, text = "Set banner address", command = self.set_banner)
+        self.button_set_icon_address = ttk.Button(self, text = "Set icon address", command = self.set_icon)
+        self.button_set_color = ttk.Button(self, text = "Set color", command = lambda: self.set_color(self.listbox_colors))
+        self.button_set_sectioncolor = ttk.Button(self, text = "Set section color", command = lambda: self.set_color(self.listbox_sections))
+        
+        self.button_delete_section = ttk.Button(self, text = "-", width = 3, command = lambda: self.delete_list_item(self.listbox_sections))
+        self.button_add_section = ttk.Button(self, text = "+", width = 3, command = lambda: self.add_list_item(self.listbox_sections))
+        
+        self.button_delete_icon = ttk.Button(self, text = "-", width = 3, command = lambda: self.delete_list_item(self.listbox_icons))
+        self.button_add_icon = ttk.Button(self, text = "+", width = 3, command = lambda: self.add_list_item(self.listbox_icons))
+        
+        #Labels
+        self.label_color = tk.Label(self, width = 10)
+        self.label_sectioncolor = ttk.Label(self,  width = 10)
+        
+        self.setup_grid()
+        self.update_fields()
+        
+        self.config_widgets = [self.button_banner, self.button_set_color, self.button_set_sectioncolor, self.button_delete_section, self.button_add_section, self.button_delete_icon, self.button_add_icon, self.button_set_icon_address]
+             
+    def setup_grid(self):
+        self.grid()
+        self.button_banner.grid(row = 0, column = 0)
+        self.entry_banner.grid(row = 0, column = 1, columnspan = 5, padx = 5, sticky = "nsew")
+        
+        self.listbox_colors.grid(row = 2, column = 0, padx = 5)
+        self.label_color.grid(row = 3, column = 0)
+        self.button_set_color.grid(row = 4, column = 0)
+        
+        self.button_delete_section.grid(row = 1, column = 1, columnspan  = 2)
+        self.listbox_sections.grid(row = 2, column = 1, columnspan = 2, padx = 5)
+        self.label_sectioncolor.grid(row = 3, column = 1, columnspan = 2)
+        self.button_set_sectioncolor.grid(row = 4, column = 1, columnspan = 2)
+        self.entry_new_section.grid(row = 5, column = 1, columnspan = 1, sticky = "nsew")
+        self.button_add_section.grid(row = 5, column = 2)
+        
+        self.button_delete_icon.grid(row = 1, column = 3, columnspan = 2)
+        self.listbox_icons.grid(row = 2, column = 3, columnspan = 2, padx = 5)
+        self.entry_icon.grid(row = 3, column = 3, columnspan = 2, sticky = "nsew")
+        self.button_set_icon_address.grid(row = 4, column = 3, columnspan = 2)
+        self.entry_icon_name.grid(row = 5, column = 3, sticky = "nsew")
+        self.button_add_icon.grid(row = 5, column = 4)
+        
+        #self.grid_rowconfigure(0, weight = 1)
+        #self.grid_rowconfigure(1, weight = 1)
+        #self.grid_rowconfigure(2, weight = 1)
+        #self.grid_rowconfigure(3, weight = 1)
+        #self.grid_rowconfigure(4, weight = 1)
+        #self.grid_rowconfigure(5, weight = 1)
+        
+        #self.grid_columnconfigure(0, weight = 1)
+        #self.grid_columnconfigure(1, weight = 1)
+        #self.grid_columnconfigure(2, weight = 1)
+        #self.grid_columnconfigure(3, weight = 1)
+        #self.grid_columnconfigure(4, weight = 1)
+        self.grid_columnconfigure(5, weight = 1)
+
+    
+    def update_fields(self, event = None):
+        self.entry_banner.delete(0, tk.END)
+        self.entry_banner.insert(0, self.newsletter.get_banner())
+        
+        box_values = {self.listbox_colors : self.newsletter.get_colors(), \
+                    self.listbox_sections : self.newsletter.get_sections(), \
+                       self.listbox_icons : self.newsletter.get_icons()}
+        
+        for box in box_values:
+            box.delete(0, box.size() - 1)
+            for index, value in enumerate(list(box_values[box].keys())):
+                box.insert(index, value)
+            box.select_set(0)
+        self.update_labels()
+    
+    def update_labels(self, event = None):
+        label_values = {self.label_color: self.selection(self.listbox_colors), \
+                        self.label_sectioncolor : self.selection(self.listbox_sections)}
+        for label in label_values:
+            color = self.newsletter.get_color(label_values[label])
+            fg_color = self.get_label_fgcolor(color)
+            label.config(background = "#" + color, foreground = fg_color, text = color)
+        
+        self.entry_icon.delete(0, tk.END)
+        target = self.listbox_icons.get(self.listbox_icons.curselection()[0])
+        self.entry_icon.insert(0, self.newsletter.get_icon(target))
+        
+    def selection(self, box): 
+        return box.get(box.curselection()[0])
+        
+    def get_label_fgcolor(self, bg):
+        if int(bg, 16) < (int("ffffff", 16) / 2):
+            return "#ffffff"
+        else:
+            return "#000000"
+        
+    def delete_list_item(self, box):
+        
+        if box == self.listbox_sections:
+            self.newsletter.delete_section(self.selection(box))
+        elif box == self.listbox_icons:
+            self.newsletter.delete_icon(self.selection(box))
+        deleted_index = box.curselection()[0]
+        box.delete(deleted_index)
+        if box.size() != 0:
+            box.select_set(min(box.size() - 1, int(deleted_index)))
+    
+    def add_list_item(self, box):
+        if box == self.listbox_sections:
+            new_name = self.entry_new_section.get()
+            if new_name != "" and new_name not in list(self.newsletter.get_sections().keys()):
+                self.listbox_sections.insert(self.listbox_sections.size(), new_name)
+                self.newsletter.add_section(new_name, "000000")
+        elif box == self.listbox_icons:
+            new_name = self.entry_icon_name.get()
+            if new_name != "" and new_name not in list(self.newsletter.get_icons().keys()):
+                self.listbox_icons.insert(self.listbox_icons.size(), new_name)
+                self.newsletter.set_icon(new_name, "TYPE ICON ADDRESS HERE")
+        
+    def select_next(self, event):   
+        box = event.widget
+        curselection = int(box.curselection()[0])
+        box.select_clear(0, box.size()-1)
+        box.select_set(min(box.size() - 1, curselection + 1))
+        self.update_labels(event)
+        
+    def select_previous(self, event):
+        box = event.widget
+        curselection = int(box.curselection()[0])
+        box.select_clear(0, box.size()-1)
+        box.select_set(max(0, curselection - 1))
+        self.update_labels(event)
+       
+    def set_banner(self):
+        self.newsletter.set_banner(self.entry_banner.get())
+        self.button_banner.config(text = "Banner was set!")
+    
+    def set_icon(self):
+        self.newsletter.set_icon(self.selection(self.listbox_icons), self.entry_icon.get())
+    
+    def set_color(self, box):
+        color = colorchooser.askcolor()
+        if color[1] != None:
+            hex_color = color[1][1:]
+            #print(target)
+            self.newsletter.set_color(self.selection(box), hex_color)
+            fg_color = self.get_label_fgcolor(hex_color)
+            if box == self.listbox_colors:
+                self.label_color.config(background = color[1], foreground = fg_color, text = hex_color)
+            elif box == self.listbox_sections:
+                self.label_sectioncolor.config(background = color[1], foreground = fg_color, text = hex_color)
+    
+    def toggle_defaults(self, is_default):
+            if is_default:
+                for widget in self.config_widgets:
+                    widget.config(state = tk.DISABLED)
+                self.listbox_sections.unbind("<B1-Motion>")
+                self.listbox_sections.unbind("<Shift-Up>")
+                self.listbox_sections.unbind("<Shift-Down>")
+            else:
+                for widget in self.config_widgets:
+                    widget.config(state = tk.NORMAL)
+                self.listbox_sections.bind("<B1-Motion>", self.shift_selection)
+                self.listbox_sections.bind("<Shift-Up>", self.shift_selection)
+                self.listbox_sections.bind("<Shift-Down>", self.shift_selection)
+
+    def shift_selection(self, event):
+        box = event.widget
+        sectionIndex = int(box.curselection()[0])
+        if event.keysym == "Down":
+            shift = min(sectionIndex + 1, box.size() - 1)
+        elif event.keysym == "Up":
+            shift = max(sectionIndex - 1, 0)
+        else:
+            shift = box.nearest(event.y)
+        
+        if shift < sectionIndex:
+            x = box.get(shift)
+            box.delete(shift)   
+            box.insert(shift+1, x)
+        elif shift > sectionIndex:
+            x = box.get(shift)
+            box.delete(shift)
+            box.insert(shift-1, x)
+            
+        sections_dict = OrderedDict()
+        for section in range(0, self.listbox_sections.size()):
+            color = self.newsletter.get_color(self.listbox_sections.get(section))
+            sections_dict[self.listbox_sections.get(section)] = color
+        self.newsletter.set_sections(sections_dict)

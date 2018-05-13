@@ -1,0 +1,20 @@
+<root>
+	<newsletter type="Viikkomaili">
+		<from>janina.niiranen@aalto.fi</from>
+		<to>inkubio@list.ayy.fi</to>
+		<banner>http://www.inkubio.fi/sites/default/files/kuvat/inkumail-header.png</banner>
+		<top_icon>http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/top-kuvake2.png</top_icon>
+		<colors>
+			<color target="background" value="e6e6e6" />
+			<color target="foreground" value="ffffff" />
+			<color target="text" value="1d393d" />
+			<color target="link" value="0ba360" />
+			<color target="intro" value="0ba360" />
+			<color target="outro" value="0ba360" />
+		</colors>
+		<sections>
+			<section color="008c5a" name="Inkubio" weight="0" /><section color="56b5ba" name="Opintoasiaa" weight="1" /><section color="b1d5fc" name="Töitä" weight="2" /><section color="610535" name="AYY" weight="3" /><section color="004080" name="Aalto" weight="4" /><section color="edd90d" name="Tutkimuskutsuja" weight="5" /><section color="b9b9ff" name="Other" weight="6" /></sections>
+		<icons>
+			<icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/instagram-kuvake2.png" target=".instagram.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/aalto-kuvake2.png" target=".aalto.fi" /><icon address="https://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/youtube-kuvake2.png" target=".youtube.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/inkubio-kuvake2.png" target=".inkubio.fi" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/facebook-kuvake2.png" target=".facebook.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/twitter-kuvake2.png" target=".twitter.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/ayy-kuvake2.png" target=".ayy.fi" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/linkedin-kuvake2.png" target=".linkedin.com" /></icons>
+	</newsletter>
+	<newsletter type="Preset1"><from>sender@email.com</from><to>receiver@email.com</to><banner>https://i.pinimg.com/originals/37/35/5d/37355de4a4d37e74a893e706436d4a42.jpg</banner><top_icon>https://media.pennlive.com/opinion/photo/up-arrowgif-cc029957a2027cc1.gif</top_icon><colors><color target="foreground" value="ffffff" /><color target="background" value="e6e6e6" /><color target="text" value="1d393d" /><color target="intro" value="5256ef" /><color target="outro" value="010476" /><color target="link" value="0ba360" /></colors><sections><section color="4adeea" name="EVENTS" weight="0" /><section color="ff3a35" name="INFO" weight="1" /></sections><icons><icon address="https://cdn4.iconfinder.com/data/icons/seo-web-15/465/web-user-interface_48-128.png" target=".facebook.com" /></icons></newsletter></root>

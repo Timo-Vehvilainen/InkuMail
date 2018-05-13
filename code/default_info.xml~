@@ -1,0 +1,20 @@
+<root>
+	<newsletter type="Viikkomaili">
+		<from>timo.t.vehvilainen@aalto.fi</from>
+		<to>inkubio@list.ayy.fi</to>
+		<banner>http://www.inkubio.fi/sites/default/files/kuvat/viikkotiedote_header.jpg</banner>
+		<top_icon>http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/alku_kuvake.jpg</top_icon>
+		<colors>
+			<color target="background" value="ffffeb" />
+			<color target="foreground" value="ffffff" />
+			<color target="text" value="000000" />
+			<color target="link" value="927b51" />
+			<color target="intro" value="80c31c" />
+			<color target="outro" value="927b51" />
+		</colors>
+		<sections>
+			<section color="008542" name="Inkubio" weight="0" /><section color="035f98" name="AYY" weight="1" /><section color="b11a9a" name="Aalto" weight="2" /><section color="fe9a00" name="Other" weight="3" /></sections>
+		<icons>
+			<icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/facebook_kuvake.jpg" target=".facebook.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/doodle_kuvake.jpg" target=".doodle.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/twitter_kuvake.jpg" target=".twitter.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/aalto_kuvake.jpg" target=".aalto.fi" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/instagram_kuvake.jpg" target=".instagram.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/inkubio_kuvake.jpg" target=".inkubio.fi" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/ayy_kuvake.jpg" target=".ayy.fi" /></icons>
+	</newsletter>
+	<newsletter type="Newsletter"><from>sender@aalto.fi</from><to>recipient@gmail.com</to><banner> http://www.branson.org/cms/lib2/CA02001606/Centricity/Domain/42/GENERIC_Alumni_Newsletter_Banner.jpeg</banner><top_icon>http://www.clker.com/cliparts/P/b/V/n/O/D/green-up-30x30.svg</top_icon><colors><color target="foreground" value="ffffff" /><color target="background" value="eee9c1" /><color target="text" value="000000" /><color target="intro" value="80c31c" /><color target="outro" value="927b51" /><color target="link" value="927b51" /></colors><sections><section color="008542" name="Guild events" weight="0" /><section color="f356d4" name="University events" weight="1" /><section color="035f98" name="Job offers" weight="2" /></sections><icons><icon address="http://www.linnmarsoccer.com/wp-content/uploads/2014/11/instagram-logo-png-small.png" target=".instagram.com" /><icon address="https://wiki.aalto.fi/download/attachments/41189445/facebook-logo_small.png?version=1&amp;modificationDate=1289225655000&amp;api=v2" target=".facebook.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/doodle_kuvake.jpg" target=".doodle.com" /><icon address="http://www.inkubio.fi/sites/default/files/kuvat/viikkomaili/twitter_kuvake.jpg" target=".twitter.com" /></icons></newsletter></root>

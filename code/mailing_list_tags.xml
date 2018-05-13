@@ -1,0 +1,14 @@
+<root>
+	<recipient address="inkubio@list.ayy.fi" tag="[Inkubio] "/>
+	<recipient address="hallitus@inkubio.fi" tag="[Inkubio-hal] "/>
+	<recipient address="inkubio-hal@list.ayy.fi" tag="[Inkubio-hal] "/>
+	<recipient address="fuksit@inkubio.fi" tag="[Inkubio-fuksit] "/>
+	<recipient address="inkubio-fuksit@list.ayy.fi" tag="[Inkubio-fuksit] "/>
+	<recipient address="isot@inkubio.fi" tag="[Inkubio-isot] "/>
+	<recipient address="inkubio-isot@list.ayy.fi" tag="[Inkubio-isot] "/>
+	<recipient address="international@inkubio.fi" tag="[Inkubio-international] "/>
+	<recipient address="inkubio-international@list.ayy.fi" tag="[Inkubio-international] "/>
+	<recipient address="tiedotus@inkubio.fi" tag="[Inkubio-tiedotus] "/>
+	<recipient address="tiedotusmestari@inkubio.fi" tag="[Inkubio-tiedotus] "/>
+	<recipient address="inkubio-tiedotus@list.ayy.fi" tag="[Inkubio-tiedotus] "/>
+</root>
