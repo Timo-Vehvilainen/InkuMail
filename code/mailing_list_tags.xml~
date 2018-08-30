@@ -1,8 +1,0 @@
-<root>
-	<recipient address="inkubio@list.ayy.fi" tag="[Inkubio] "/>
-	<recipient address="hallitus@inkubio.fi" tag="[Inkubio-hal] "/>
-	<recipient address="fuksit@inkubio.fi" tag="[Inkubio-fuksit] "/>
-	<recipient address="isot@inkubio.fi" tag="[Inkubio-isot] "/>
-	<recipient address="international@inkubio.fi" tag="[Inkubio-international] "/>
-	<recipient address="tiedotus@inkubio.fi" tag="[Inkubio-tiedotus] "/>
-</root>
